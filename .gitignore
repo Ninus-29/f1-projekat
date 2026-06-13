@@ -1,0 +1,9 @@
+cache/
+__pycache__/
+*.pyc
+
+f1_laps_2023_2025_raw.csv
+monza_2024_raw.csv
+f1_tyre_degradation_dataset.csv
+f1_tyre_degradation_encoded.csv
+model_results.csv
