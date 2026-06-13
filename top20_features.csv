@@ -1,0 +1,21 @@
+Feature,Importance
+remainder__Stint,0.304470810851837
+remainder__lap_time_delta,0.1692041408789168
+remainder__LapTimeSeconds,0.11210119228476197
+remainder__Season,0.06397159848602417
+remainder__Position,0.050300932825930726
+cat__RaceName_Monaco Grand Prix,0.04240573606260271
+cat__TrackStatus_4,0.041860602589311686
+cat__RaceName_Australian Grand Prix,0.021874514040331028
+remainder__average_last_3_laps,0.01858355436833156
+remainder__LapNumber,0.01827386213664855
+remainder__tyre_age_ratio,0.012113123458183692
+cat__Compound_HARD,0.010722042084506396
+cat__RaceName_Canadian Grand Prix,0.010130037277362688
+remainder__TyreLife,0.009718356361589495
+cat__Compound_INTERMEDIATE,0.006996385184453606
+cat__RaceName_Saudi Arabian Grand Prix,0.00686511497842834
+cat__TrackStatus_41,0.005912919178210266
+cat__RaceName_Las Vegas Grand Prix,0.005516737195746919
+cat__Driver_RUS,0.0054751989671432124
+cat__TrackStatus_671,0.005218769841993997
