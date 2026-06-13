@@ -72,7 +72,7 @@ columns = [
     "Season", "RaceName", "Driver", "Team",
     "LapNumber", "Stint", "Compound", "TyreLife",
     "Position", "TrackStatus",
-    "AirTemp", "Humidity", "Pressure", "Rainfall",
+    "AirTemp", "Humidity", "Pressure",
     "TrackTemp", "WindDirection", "WindSpeed",
     "LapTimeSeconds",
     "average_last_3_laps",
