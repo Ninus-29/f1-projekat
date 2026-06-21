@@ -7,3 +7,4 @@ monza_2024_raw.csv
 f1_tyre_degradation_dataset.csv
 f1_tyre_degradation_encoded.csv
 model_results.csv
+*.pkl

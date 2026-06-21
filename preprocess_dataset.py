@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 
 # 1. Ucitavanje raw dataseta
 df = pd.read_csv("f1_laps_2023_2025_raw.csv", low_memory=False)
@@ -22,13 +21,23 @@ if "PitOutTime" in df.columns:
 # 5. Sortiranje podataka
 df = df.sort_values(["Season", "RaceName", "Driver", "Stint", "LapNumber"])
 
-# 6. Racunanje prvog vremena u svakom stintu
-df["FirstLapStintTime"] = df.groupby(
+# 6. Racunanje pozicije kruga unutar stinta
+df["LapInStint"] = df.groupby(
     ["Season", "RaceName", "Driver", "Stint"]
-)["LapTimeSeconds"].transform("first")
+).cumcount() + 1
+
+# Referentno vreme = drugi krug u stintu
+df["ReferenceLapTime"] = df.groupby(
+    ["Season", "RaceName", "Driver", "Stint"]
+)["LapTimeSeconds"].transform(
+    lambda x: x.iloc[1] if len(x) > 1 else x.iloc[0]
+)
 
 # 7. Ciljna promenljiva - degradacija guma
-df["degradation"] = df["LapTimeSeconds"] - df["FirstLapStintTime"]
+df["degradation"] = df["LapTimeSeconds"] - df["ReferenceLapTime"]
+
+# Izbacujemo prvi krug stinta jer se koristi prelazak sa hladnih guma / izlazak iz boksa
+df = df[df["LapInStint"] >= 2]
 
 # 8. Dodatni atributi
 df["average_last_3_laps"] = df.groupby(
@@ -44,6 +53,18 @@ df["stint_length"] = df.groupby(
 )["LapNumber"].transform("count")
 
 df["tyre_age_ratio"] = df["TyreLife"] / df["stint_length"]
+
+compound_factor = {
+    "SOFT": 1.5,
+    "MEDIUM": 1.0,
+    "HARD": 0.6,
+    "INTERMEDIATE": 1.2,
+    "WET": 1.1
+}
+
+df["compound_factor"] = df["Compound"].map(compound_factor).fillna(1.0)
+
+df["compound_tyrelife"] = df["TyreLife"] * df["compound_factor"]
 
 # 9. Popunjavanje weather kolona ako postoje
 weather_columns = [
@@ -78,6 +99,8 @@ columns = [
     "average_last_3_laps",
     "lap_time_delta",
     "tyre_age_ratio",
+    "compound_factor",
+    "compound_tyrelife",
     "degradation"
 ]
 
