@@ -80,7 +80,7 @@ f1-projekat/
 │
 ├── app.py
 │
-├── F1_Tyre_Degradation_Dokumentacija.docx
+├── F1_Tyre_Degradation_Dokumentacija.pdf
 │
 ├── cache/
 ├── .gitignore
